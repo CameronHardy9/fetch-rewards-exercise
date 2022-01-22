@@ -32,7 +32,7 @@ function Form(props) {
                         })
                     }
                 </select>
-                <input type="submit" value="Submit" />
+                <button>Submit</button>
             </form>
         </>
     )
