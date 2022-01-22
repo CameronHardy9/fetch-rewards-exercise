@@ -1,4 +1,4 @@
-
+import uniqid from 'uniqid';
 
 function Form(props) {
     return(
@@ -17,7 +17,7 @@ function Form(props) {
                     {
                         props.occupations.map((item) => {
                             return(
-                                <option value={item.toLowerCase().replace(' ', '-')}>{item}</option>
+                                <option key={uniqid()} value={item.toLowerCase().replace(' ', '-')}>{item}</option>
                             )
                         })
                     }
@@ -27,7 +27,7 @@ function Form(props) {
                     {
                         props.states.map((item) => {
                             return(
-                                <option value={item.name.toLowerCase()}>{item.name}</option>
+                                <option key={uniqid()} value={item.name.toLowerCase()}>{item.name}</option>
                             )
                         })
                     }
