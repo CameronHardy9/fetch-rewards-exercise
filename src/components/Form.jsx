@@ -1,3 +1,5 @@
+
+
 function Form(props) {
     return(
         <>
@@ -30,6 +32,7 @@ function Form(props) {
                         })
                     }
                 </select>
+                <input type="submit" value="Submit" />
             </form>
         </>
     )
