@@ -11,7 +11,7 @@ const formStyling = {
     display: 'flex', 
     flexDirection: 'column', 
     alignItems: 'center', 
-    justifyContent: 'space-around', 
+    justifyContent: 'flexSat', 
     flexGrow: 1
 }
 
@@ -28,24 +28,20 @@ function Form(props) {
         <>
             <form style={formStyling}>
                 <div style={divStyling}>
-                    <label htmlFor='name'>Full Name</label>
-                    <input type="text" name="name" id="name" required />
+                    <input type="text" name="name" id="name" placeholder='Full Name' autoFocus required />
                 </div>
                 <div style={divStyling}>
-                    <label htmlFor='email'>Email</label>
-                    <input type="email" name="email" id="email" required />
+                    <input type="email" name="email" id="email" placeholder='Email' required />
                 </div>
                 <div style={divStyling}>
-                    <label htmlFor='password'>Create Password</label>
-                    <input type="password" name="password" id="password" required />
+                    <input type="password" name="password" id="password" placeholder='Password' required />
                 </div>
                 <div style={divStyling}>
-                    <label htmlFor='confirmPassword'>Confirm Password</label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" required />
+                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder='Confirm Password' required />
                 </div>
                 <div style={divStyling}>
-                    <label htmlFor='occupation'>Occupation</label>
-                    <select name="occupation" id="occupation" required>
+                    <select name="occupation" id="occupation" defaultValue='' required>
+                        <option value='' disabled>Select an occupation</option>
                         {
                             props.occupations.map((item) => {
                                 return(
@@ -56,8 +52,8 @@ function Form(props) {
                     </select>
                 </div>
                 <div style={divStyling}>
-                    <label htmlFor='state'>State</label>
-                    <select name="state" id="state" required>
+                    <select name="state" id="state" defaultValue='' required>
+                        <option value='' disabled>Select your state</option>
                         {
                             props.states.map((item) => {
                                 return(
