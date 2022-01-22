@@ -1,7 +1,16 @@
+import {Routes, Route} from 'react-router-dom';
+import Form from './components/Form';
+import Success from './components/Success';
+
 function App() {
-  return (
-    <h1>App</h1>
-  );
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<Form />} />
+                <Route path="/success" element={<Success />} />
+            </Routes>
+        </>
+    );
 }
 
 export default App;
