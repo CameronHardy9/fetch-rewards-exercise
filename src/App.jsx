@@ -30,7 +30,9 @@ function App() {
                     <Route path="/success" element={<Success />} />
                 </Routes>
             ) : (
-                <h1>Loading...</h1>
+                <div className="loaderContainer">
+                    <div className='dotLoader'></div>
+                </div>
             )}
             
         </>
