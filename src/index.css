@@ -10,6 +10,21 @@
     flex-direction: column;
 }
 
+.field {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center; 
+    flex-grow: 1;
+}
+
 .loaderContainer {
     width: 100vw;
     height: 100vh;
