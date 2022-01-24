@@ -1,7 +1,10 @@
 import uniqid from 'uniqid';
+import { useNavigate } from 'react-router';
 import {useState} from 'react';
 
 function Form(props) {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: undefined,
         email: undefined,
@@ -13,6 +16,7 @@ function Form(props) {
     const [validate, setValidate] = useState(false);
 
     const handleInput = (c) => {
+        c.target.style.borderColor = '';
         setFormData({...formData,
         [c.target.name]: c.target.value});
     }
@@ -45,6 +49,14 @@ function Form(props) {
         }
     };
 
+    const handleSubmit = () => {
+        for (const item in formData) {
+            if (!formData[item]) {
+                document.querySelector(`#${item}`).style.borderColor = 'red';
+            }
+        }
+    }
+
     return(
         <>
             <form className='form'>
@@ -70,7 +82,7 @@ function Form(props) {
                         {
                             props.occupations.map((item) => {
                                 return(
-                                    <option key={uniqid()} value={item.toLowerCase().replace(' ', '-')}>{item}</option>
+                                    <option key={uniqid()} value={item}>{item}</option>
                                 )
                             })
                         }
@@ -82,13 +94,13 @@ function Form(props) {
                         {
                             props.states.map((item) => {
                                 return(
-                                    <option key={uniqid()} value={item.name.toLowerCase()}>{item.name}</option>
+                                    <option key={uniqid()} value={item.name}>{item.name}</option>
                                 )
                             })
                         }
                     </select>
                 </div>
-                <button>Submit</button>
+                <button type='button' formNoValidate onClick={() => handleSubmit()}>Submit</button>
             </form>
         </>
     )
