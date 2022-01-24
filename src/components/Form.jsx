@@ -50,10 +50,15 @@ function Form(props) {
     };
 
     const handleSubmit = () => {
+        let formCompleted = true;
         for (const item in formData) {
             if (!formData[item]) {
                 document.querySelector(`#${item}`).style.borderColor = 'red';
+                formCompleted = false;
             }
+        }
+        if (formCompleted) {
+            navigate('success');
         }
     }
 
