@@ -12,6 +12,11 @@ function Form(props) {
 
     const [validate, setValidate] = useState(false);
 
+    const handleInput = (c) => {
+        setFormData({...formData,
+        [c.target.name]: c.target.value});
+    }
+
     const handlePassword = (c) => {
         const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
         const validate = c.target.value.match(regex);
@@ -44,10 +49,10 @@ function Form(props) {
         <>
             <form className='form'>
                 <div className='field'>
-                    <input type="text" name="name" id="name" placeholder='Full Name' autoFocus required />
+                    <input type="text" name="name" id="name" placeholder='Full Name' autoFocus required onBlur={(c) => handleInput(c)} />
                 </div>
                 <div className='field'>
-                    <input type="email" name="email" id="email" placeholder='Email' required />
+                    <input type="email" name="email" id="email" placeholder='Email' required onBlur={(c) => handleInput(c)} />
                 </div>
                 <div className='field'>
                     <input type="password" name="password" id="password" placeholder='Password' required onBlur={(c) => {
@@ -60,7 +65,7 @@ function Form(props) {
                     }} />
                 </div>
                 <div className='field'>
-                    <select name="occupation" id="occupation" defaultValue='' required>
+                    <select name="occupation" id="occupation" defaultValue='' required onBlur={(c) => handleInput(c)} >
                         <option value='' disabled>Select an occupation</option>
                         {
                             props.occupations.map((item) => {
@@ -72,7 +77,7 @@ function Form(props) {
                     </select>
                 </div>
                 <div className='field'>
-                    <select name="state" id="state" defaultValue='' required>
+                    <select name="state" id="state" defaultValue='' required onBlur={(c) => handleInput(c)} >
                         <option value='' disabled>Select your state</option>
                         {
                             props.states.map((item) => {
