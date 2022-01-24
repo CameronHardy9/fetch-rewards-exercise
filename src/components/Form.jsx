@@ -1,21 +1,6 @@
 import uniqid from 'uniqid';
 import {useState} from 'react';
 
-const divStyling = {
-    display: 'flex', 
-    flexDirection: 'column', 
-    alignItems: 'center',
-    margin: '10px'
-};
-
-const formStyling = {
-    display: 'flex', 
-    flexDirection: 'column', 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    flexGrow: 1
-}
-
 function Form(props) {
     const [formData, setFormData] = useState({
         name: undefined,
@@ -57,24 +42,24 @@ function Form(props) {
 
     return(
         <>
-            <form style={formStyling}>
-                <div style={divStyling}>
+            <form className='form'>
+                <div className='field'>
                     <input type="text" name="name" id="name" placeholder='Full Name' autoFocus required />
                 </div>
-                <div style={divStyling}>
+                <div className='field'>
                     <input type="email" name="email" id="email" placeholder='Email' required />
                 </div>
-                <div style={divStyling}>
+                <div className='field'>
                     <input type="password" name="password" id="password" placeholder='Password' required onBlur={(c) => {
                         handlePassword(c);
                     }} />
                 </div>
-                <div style={divStyling}>
+                <div className='field'>
                     <input type="password" name="confirmPassword" id="confirmPassword" placeholder='Confirm Password' required onBlur={(c) => {
                         handleValidation(c);
                     }} />
                 </div>
-                <div style={divStyling}>
+                <div className='field'>
                     <select name="occupation" id="occupation" defaultValue='' required>
                         <option value='' disabled>Select an occupation</option>
                         {
@@ -86,7 +71,7 @@ function Form(props) {
                         }
                     </select>
                 </div>
-                <div style={divStyling}>
+                <div className='field'>
                     <select name="state" id="state" defaultValue='' required>
                         <option value='' disabled>Select your state</option>
                         {
