@@ -1,6 +1,6 @@
 # User Creation Form w/ Validation and Feedback
 
-## This form is live to try out <a href="https://fetch-rewards-exercise.netlify.app/" target="_blank">here!</a>
+## This form is live to try out [here!](https://fetch-rewards-exercise.netlify.app/)
 
 ## Features:
 - Field completeness validation
