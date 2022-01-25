@@ -1,4 +1,5 @@
 function PasswordAlert(props) {
+    //Handles alert flag for either 'Password' or 'Confirm Password' field based on props passed from 'Form.jsx'
     if (props.field === "password") {
         return(
             <div className="alertFlag">

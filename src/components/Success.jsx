@@ -4,6 +4,7 @@ import {useEffect} from 'react';
 function Success(props) {
     const navigate = useNavigate();
 
+    //Checks for completed form based on parent state (updated by 'Form.jsx' component) and navigates back home if false
     useEffect(() => {
         if(!props.formComplete) {
             navigate('/');

@@ -9,6 +9,7 @@ import PasswordAlert from './PasswordAlert';
 function Form(props) {
     const navigate = useNavigate();
 
+    //State for managing alert flags per input
     const [showAlert, setShowAlert] = useState({
         name: false,
         email: false,
@@ -18,6 +19,7 @@ function Form(props) {
         state: false
     })
 
+    //State for building final body for POST request body + validating field completeness on 'submit'
     const [formData, setFormData] = useState({
         name: undefined,
         email: undefined,
@@ -26,14 +28,23 @@ function Form(props) {
         state: undefined
     })
 
-    const [validate, setValidate] = useState(false);
+    //State for valid password entry in 'Password' field - used for final confirmation in 'Confirm Password' field
+    const [validatePassword, setValidatePassword] = useState(false);
 
+    //Handler for non-validation field inputs + alert reset
     const handleInput = (c) => {
-        c.target.style.border = '';
-        setFormData({...formData,
-        [c.target.name]: c.target.value});
+        if(c.target.value) {
+            c.target.style.border = '';
+    
+            setFormData({...formData,
+            [c.target.name]: c.target.value});
+    
+            setShowAlert({...showAlert,
+            [c.target.name]: false})
+        }
     }
 
+    //Handler for email validation + alert flag
     const handleEmail = (c) => {
         const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         const validate = c.target.value.match(regex);
@@ -54,6 +65,7 @@ function Form(props) {
         }
     }
 
+    //Handler for 'Password' field validation + alert flag
     const handlePassword = (c) => {
         const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
         const validate = c.target.value.match(regex);
@@ -62,21 +74,22 @@ function Form(props) {
             setShowAlert({...showAlert,
                 password: false
             });
-            setValidate(true);
+            setValidatePassword(true);
         } else {
             c.target.style.border = '0.2rem solid red';
             setShowAlert({...showAlert,
                 password: true
             });
-            setValidate(false);
+            setValidatePassword(false);
             setFormData({...formData,
                 password: undefined});
         }
     };
 
+    //Handler for password match validation + alert flag
     const handleConfirmPassword = (c) => {
         const password = document.querySelector('#password');
-        if(password.value === c.target.value && validate) {
+        if(password.value === c.target.value && validatePassword) {
             c.target.style.border = '';
             setShowAlert({...showAlert,
                 confirmPassword: false
@@ -93,9 +106,11 @@ function Form(props) {
         }
     };
 
+    //Handler for final field completeness validation, server request, and 'success/error page' routing + alert flags
     const handleSubmit = () => {
         let formCompleted = true;
         let newState = {...showAlert};
+
         for (const item in formData) {
             if (!formData[item]) {
                 document.querySelector(`#${item}`).style.border = '0.2rem solid red';
@@ -107,10 +122,11 @@ function Form(props) {
             }
         }
         setShowAlert(newState);
-        
+
         if (formCompleted) {
             (async () => {
                 const response = await apiHandler("POST", formData);
+
                 if (response.status === 200) {
                     props.handleFormComplete();
                     navigate('/success');
@@ -123,6 +139,7 @@ function Form(props) {
 
     return(
         <>
+            {/* Alert flag components are conditionally rendered based on showAlert state */}
             <div className='container'>
                 <h1 className='heading'>Create New User</h1>
                 <form className='form'>
