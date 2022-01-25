@@ -5,7 +5,6 @@ function Success(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('success effect');
         if(!props.formComplete) {
             navigate('/');
         }

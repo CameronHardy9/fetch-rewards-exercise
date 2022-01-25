@@ -11,7 +11,6 @@ function App() {
     const [formComplete, setFormComplete] = useState(false);
 
     useEffect(() => {
-        console.log("effect");
         (async () => {
             const fieldData = await apiHandler("GET");
 
