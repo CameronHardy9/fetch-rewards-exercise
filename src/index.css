@@ -39,8 +39,13 @@ html {
     border-radius: .5rem;
     border: 0;
     background-color: rgb(216, 216, 216);
-    text-align: center;
+    text-align: left;
     font-size: 1.5rem;
+    padding: .5rem;
+}
+
+.field::placeholder {
+    text-align: center;
 }
 
 .form {
@@ -104,15 +109,50 @@ html {
     background-size: 2.4rem 2.4rem;
     background-repeat: no-repeat;
     animation: dots 1s infinite linear; 
-  }
+}
   
-  @keyframes dots {
-    0%     {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 50% ,calc(2*100%/3) 50% ,calc(3*100%/3) 50% }
-    16.67% {background-position: calc(0*100%/3) 0   ,calc(1*100%/3) 50% ,calc(2*100%/3) 50% ,calc(3*100%/3) 50% }
-    33.33% {background-position: calc(0*100%/3) 100%,calc(1*100%/3) 0   ,calc(2*100%/3) 50% ,calc(3*100%/3) 50% }
-    50%    {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 100%,calc(2*100%/3) 0   ,calc(3*100%/3) 50% }
-    66.67% {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 50% ,calc(2*100%/3) 100%,calc(3*100%/3) 0   }
-    83.33% {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 50% ,calc(2*100%/3) 50% ,calc(3*100%/3) 100%}
-    100%   {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 50% ,calc(2*100%/3) 50% ,calc(3*100%/3) 50% }
-  }
-  
+@keyframes dots {
+0%     {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 50% ,calc(2*100%/3) 50% ,calc(3*100%/3) 50% }
+16.67% {background-position: calc(0*100%/3) 0   ,calc(1*100%/3) 50% ,calc(2*100%/3) 50% ,calc(3*100%/3) 50% }
+33.33% {background-position: calc(0*100%/3) 100%,calc(1*100%/3) 0   ,calc(2*100%/3) 50% ,calc(3*100%/3) 50% }
+50%    {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 100%,calc(2*100%/3) 0   ,calc(3*100%/3) 50% }
+66.67% {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 50% ,calc(2*100%/3) 100%,calc(3*100%/3) 0   }
+83.33% {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 50% ,calc(2*100%/3) 50% ,calc(3*100%/3) 100%}
+100%   {background-position: calc(0*100%/3) 50% ,calc(1*100%/3) 50% ,calc(2*100%/3) 50% ,calc(3*100%/3) 50% }
+}
+
+@media only screen and (max-width: 350px) {
+html {
+    font-size: 40%;
+}
+}
+
+@media only screen and (min-width: 351px) and (max-width: 480px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    html {
+        font-size: 60%;
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    html {
+        font-size: 62.5%;
+    }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+    html {
+        font-size: 70%;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
+    html {
+        font-size: 75%;
+    }
+}
