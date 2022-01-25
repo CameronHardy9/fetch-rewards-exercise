@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 #root{
     width: 100vw;
     height: 100vh;
@@ -10,19 +14,29 @@
     flex-direction: column;
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
 .field {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
+    margin: 1rem;
 }
 
 .form {
     display: flex;
     flex-direction: column; 
     align-items: center;
-    justify-content: center; 
-    flex-grow: 1;
+    justify-content: center;
+    border-radius: 1.5rem;
+    padding: 5rem;
+    box-shadow: 0 0 2.5rem black;
 }
 
 .loaderContainer {
@@ -34,11 +48,11 @@
 }
 
 .dotLoader {
-    width: 138px;
-    height: 72px;
+    width: 13.8rem;
+    height: 7.2rem;
     --c:radial-gradient(farthest-side, currentColor 90%,#0000);
     background:var(--c), var(--c), var(--c), var(--c);
-    background-size: 24px 24px;
+    background-size: 2.4rem 2.4rem;
     background-repeat: no-repeat;
     animation: dots 1s infinite linear; 
   }
