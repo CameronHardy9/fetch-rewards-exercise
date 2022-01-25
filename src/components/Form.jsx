@@ -29,33 +29,65 @@ function Form(props) {
     const [validate, setValidate] = useState(false);
 
     const handleInput = (c) => {
-        c.target.style.border = ''
+        c.target.style.border = '';
         setFormData({...formData,
         [c.target.name]: c.target.value});
+    }
+
+    const handleEmail = (c) => {
+        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        const validate = c.target.value.match(regex);
+        if(validate) {
+            c.target.style.border = '';
+            setFormData({...formData,
+                email: c.target.value});
+            setShowAlert({...showAlert,
+                email: false
+            });
+        } else {
+            c.target.style.border = '0.2rem solid red'
+            setFormData({...formData,
+                email: undefined});
+            setShowAlert({...showAlert,
+                email: true
+            });
+        }
     }
 
     const handlePassword = (c) => {
         const regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
         const validate = c.target.value.match(regex);
         if(validate) {
-            c.target.style.border = ''
+            c.target.style.border = '';
+            setShowAlert({...showAlert,
+                password: false
+            });
             setValidate(true);
         } else {
-            c.target.style.border = '0.2rem solid red'
+            c.target.style.border = '0.2rem solid red';
+            setShowAlert({...showAlert,
+                password: true
+            });
             setValidate(false);
             setFormData({...formData,
                 password: undefined});
         }
     };
 
-    const handleValidation = (c) => {
+    const handleConfirmPassword = (c) => {
         const password = document.querySelector('#password');
         if(password.value === c.target.value && validate) {
-            c.target.style.border = ''
+            c.target.style.border = '';
+            setShowAlert({...showAlert,
+                confirmPassword: false
+            });
             setFormData({...formData,
                 password: password.value});
         } else {
-            c.target.style.border = '0.2rem solid red'
+            c.target.style.border = '0.2rem solid red';
+            setShowAlert({...showAlert,
+                confirmPassword: true
+            });
             setFormData({...formData,
                 password: undefined});
         }
@@ -63,18 +95,23 @@ function Form(props) {
 
     const handleSubmit = () => {
         let formCompleted = true;
+        let newState = {...showAlert};
         for (const item in formData) {
             if (!formData[item]) {
                 document.querySelector(`#${item}`).style.border = '0.2rem solid red';
-                setShowAlert({...showAlert,
-                [item]: true});
+                
+                newState = {...newState,
+                [item]: true};
+
                 formCompleted = false;
             }
         }
+        setShowAlert(newState);
+        
         if (formCompleted) {
             (async () => {
                 const response = await apiHandler("POST", formData);
-                if (response.status == 200) {
+                if (response.status === 200) {
                     props.handleFormComplete();
                     navigate('/success');
                 } else {
@@ -91,14 +128,14 @@ function Form(props) {
                 <form className='form'>
                         <input className='field' type="text" name="name" id="name" placeholder='Full Name' autoFocus required onBlur={(c) => handleInput(c)} />
                         {showAlert.name && <BlankFieldAlert />}
-                        <input className='field' type="email" name="email" id="email" placeholder='Email' required onBlur={(c) => handleInput(c)} />
+                        <input className='field' type="email" name="email" id="email" placeholder='Email' required onBlur={(c) => handleEmail(c)} />
                         {showAlert.email && <EmailAlert />}
                         <input className='field' type="password" name="password" id="password" placeholder='Password' required onBlur={(c) => {
                             handlePassword(c);
                         }} />
                         {showAlert.password && <PasswordAlert field={"password"} />}
                         <input className='field' type="password" name="confirmPassword" id="confirmPassword" placeholder='Confirm Password' required onBlur={(c) => {
-                            handleValidation(c);
+                            handleConfirmPassword(c);
                         }} />
                         {showAlert.confirmPassword && <PasswordAlert field={"confirmPassword"} />}
                         <select className='field' name="occupation" id="occupation" defaultValue='' required onBlur={(c) => handleInput(c)} >
