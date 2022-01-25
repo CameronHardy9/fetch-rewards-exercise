@@ -15,7 +15,7 @@ function PasswordAlert(props) {
     } else if (props.field === "confirmPassword") {
         return(
             <div className="alertFlag">
-                <span>Please enter a matching password</span>
+                <span>Please enter a matching valid password</span>
             </div>
         )
     }
