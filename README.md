@@ -10,6 +10,8 @@
 - Generating dropdown lists based on options from server
 - Success message after form validation, submit, and server response
 - Alert flags for user feedback during interaction
+- Responsive sizing
+- CSS loader while waiting for server
 
 <br/>
 
