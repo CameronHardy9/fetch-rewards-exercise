@@ -1,6 +1,7 @@
 import uniqid from 'uniqid';
 import { useNavigate } from 'react-router';
 import {useState} from 'react';
+import apiHandler from '../utils/apiHandler';
 
 function Form(props) {
     const navigate = useNavigate();
@@ -41,7 +42,6 @@ function Form(props) {
             c.target.style.borderColor = '';
             setFormData({...formData,
                 password: password.value});
-            console.log(formData);
         } else {
             c.target.style.borderColor = 'red';
             setFormData({...formData,
@@ -58,31 +58,28 @@ function Form(props) {
             }
         }
         if (formCompleted) {
-            navigate('success');
+            (async () => {
+                const response = await apiHandler("POST", formData);
+                console.log(response);
+            })()
+
+            //props.handleFormComplete();
+            //navigate('/success');
         }
     }
 
     return(
         <div className='container'>
             <form className='form'>
-                <div className='field'>
-                    <input type="text" name="name" id="name" placeholder='Full Name' autoFocus required onBlur={(c) => handleInput(c)} />
-                </div>
-                <div className='field'>
-                    <input type="email" name="email" id="email" placeholder='Email' required onBlur={(c) => handleInput(c)} />
-                </div>
-                <div className='field'>
-                    <input type="password" name="password" id="password" placeholder='Password' required onBlur={(c) => {
+                    <input className='field' type="text" name="name" id="name" placeholder='Full Name' autoFocus required onBlur={(c) => handleInput(c)} />
+                    <input className='field' type="email" name="email" id="email" placeholder='Email' required onBlur={(c) => handleInput(c)} />
+                    <input className='field' type="password" name="password" id="password" placeholder='Password' required onBlur={(c) => {
                         handlePassword(c);
                     }} />
-                </div>
-                <div className='field'>
-                    <input type="password" name="confirmPassword" id="confirmPassword" placeholder='Confirm Password' required onBlur={(c) => {
+                    <input className='field' type="password" name="confirmPassword" id="confirmPassword" placeholder='Confirm Password' required onBlur={(c) => {
                         handleValidation(c);
                     }} />
-                </div>
-                <div className='field'>
-                    <select name="occupation" id="occupation" defaultValue='' required onBlur={(c) => handleInput(c)} >
+                    <select className='field' name="occupation" id="occupation" defaultValue='' required onBlur={(c) => handleInput(c)} >
                         <option value='' disabled>Select an occupation</option>
                         {
                             props.occupations.map((item) => {
@@ -92,9 +89,7 @@ function Form(props) {
                             })
                         }
                     </select>
-                </div>
-                <div className='field'>
-                    <select name="state" id="state" defaultValue='' required onBlur={(c) => handleInput(c)} >
+                    <select className='field' name="state" id="state" defaultValue='' required onBlur={(c) => handleInput(c)} >
                         <option value='' disabled>Select your state</option>
                         {
                             props.states.map((item) => {
@@ -104,8 +99,7 @@ function Form(props) {
                             })
                         }
                     </select>
-                </div>
-                <button type='button' formNoValidate onClick={() => handleSubmit()}>Submit</button>
+                <button className='submitButton' type='button' formNoValidate onClick={() => handleSubmit()}>Submit</button>
             </form>
         </div>
     )
