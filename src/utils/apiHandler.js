@@ -1,6 +1,5 @@
 async function apiHandler(method, body) {
     try {
-        console.log(JSON.stringify(body));
         const response = await fetch('https://frontend-take-home.fetchrewards.com/form', {
             mode: 'cors',
             headers: {
@@ -9,7 +8,11 @@ async function apiHandler(method, body) {
             method: method,
             body: JSON.stringify(body)
         });
-    
+        
+        if (method === "POST") {
+            return response;
+        }
+        
         const data = await response.json();
         return data
     }
