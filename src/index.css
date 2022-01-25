@@ -15,9 +15,15 @@ html {
     flex-direction: column;
 }
 
+.heading {
+    margin-bottom: 5rem;
+    font-weight: 300;
+    font-size: 4rem;
+}
+
 .container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
@@ -28,6 +34,12 @@ html {
     flex-direction: column;
     align-items: center;
     margin: 1rem;
+    width: 20rem;
+    height: 3rem;
+    border-radius: .5rem;
+    border: 0;
+    background-color: rgb(216, 216, 216);
+    text-align: center;
 }
 
 .form {
@@ -53,6 +65,16 @@ html {
     align-items: center;
     justify-content: space-around;
     font-weight: 100;
+}
+
+.submitButton {
+    margin-top: 1rem;
+    width: 10rem;
+    height: 3rem;
+    border: 0;
+    color: white;
+    background-color: rgb(87, 129, 245);
+    border-radius: .5rem;
 }
 
 .loaderContainer {
