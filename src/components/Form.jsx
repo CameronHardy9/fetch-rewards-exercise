@@ -126,10 +126,11 @@ function Form(props) {
         if (formCompleted) {
             (async () => {
                 const response = await apiHandler("POST", formData);
+                console.log(formData)
 
                 if (response.status === 200) {
                     props.handleFormComplete();
-                    navigate('/success');
+                    //navigate('/success');
                 } else {
                     navigate('/error');
                 }
