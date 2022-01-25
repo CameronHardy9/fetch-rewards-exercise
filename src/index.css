@@ -77,6 +77,15 @@ html {
     border-radius: .5rem;
 }
 
+.submitButton:hover {
+    background-color: rgb(124, 155, 240);
+    cursor: pointer;
+}
+
+.submitButton:active {
+    background-color: rgb(87, 129, 245);
+}
+
 .loaderContainer {
     width: 100vw;
     height: 100vh;
