@@ -33,6 +33,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Form states={states} occupations={occupations} handleFormComplete={handleFormComplete} />} />
                     <Route path="/success" element={<Success formComplete={formComplete} />} />
+                    <Route path="/error" element={<h1>Error: Something went wrong. Please try again later.</h1>} />
                 </Routes>
             ) : (
                 <div className="loaderContainer">
