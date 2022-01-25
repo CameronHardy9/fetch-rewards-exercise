@@ -58,13 +58,15 @@ function Form(props) {
             }
         }
         if (formCompleted) {
-            //(async () => {
-            //    const response = await apiHandler("POST", formData);
-            //    console.log(response);
-            //})()
-
-            props.handleFormComplete();
-            navigate('/success');
+            (async () => {
+                const response = await apiHandler("POST", formData);
+                if (response.status == 200) {
+                    props.handleFormComplete();
+                    navigate('/success');
+                } else {
+                    navigate('/error');
+                }
+            })()
         }
     }
 
