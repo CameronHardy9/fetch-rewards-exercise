@@ -9,7 +9,7 @@ function Success(props) {
         if(!props.formComplete) {
             navigate('/');
         }
-    }, [])
+    }, [navigate, props.formComplete])
 
     return(
         <div className="container">
