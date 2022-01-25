@@ -63,7 +63,7 @@ function Form(props) {
     }
 
     return(
-        <>
+        <div className='container'>
             <form className='form'>
                 <div className='field'>
                     <input type="text" name="name" id="name" placeholder='Full Name' autoFocus required onBlur={(c) => handleInput(c)} />
@@ -107,7 +107,7 @@ function Form(props) {
                 </div>
                 <button type='button' formNoValidate onClick={() => handleSubmit()}>Submit</button>
             </form>
-        </>
+        </div>
     )
 };
 
