@@ -155,7 +155,7 @@ function Form(props) {
                             handleConfirmPassword(c);
                         }} />
                         {showAlert.confirmPassword && <PasswordAlert field={"confirmPassword"} />}
-                        <select className='field' name="occupation" id="occupation" defaultValue='' value={formData.occupation} required onBlur={(c) => handleInput(c)} >
+                        <select className='field' name="occupation" id="occupation" defaultValue='' value={formData.occupation} required onChange={(c) => handleInput(c)} >
                             <option value='' disabled>Select an occupation</option>
                             {
                                 props.occupations.map((item) => {
@@ -166,7 +166,7 @@ function Form(props) {
                             }
                         </select>
                         {showAlert.occupation && <BlankFieldAlert />}
-                        <select className='field' name="state" id="state" defaultValue='' value={formData.state} required onBlur={(c) => handleInput(c)} >
+                        <select className='field' name="state" id="state" defaultValue='' value={formData.state} required onChange={(c) => handleInput(c)} >
                             <option value='' disabled>Select your state</option>
                             {
                                 props.states.map((item) => {
