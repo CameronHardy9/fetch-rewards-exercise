@@ -155,8 +155,7 @@ function Form(props) {
                             handleConfirmPassword(c);
                         }} />
                         {showAlert.confirmPassword && <PasswordAlert field={"confirmPassword"} />}
-                        <select className='field' name="occupation" id="occupation" defaultValue='' required onBlur={(c) => handleInput(c)} >
-                            <option value='' disabled>Select an occupation</option>
+                        <select className='field' name="occupation" id="occupation" required onBlur={(c) => handleInput(c)} >
                             {
                                 props.occupations.map((item) => {
                                     return(
